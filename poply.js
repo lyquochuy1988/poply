@@ -1,8 +1,7 @@
 Poply.elements = [];
 
-function Poply(options = {}) { 
+function Poply(options = {}) {   
     this.opt = Object.assign({
-        templateID: "", 
         closeMethods: ["button", "overlay", "escape"], 
         cssClass: [],
         destroyOnClose: true,
@@ -11,12 +10,33 @@ function Poply(options = {}) {
         onClose: () => {},
     }, options);
 
+    if (!options.content && !options.templateId) {
+        console.error("You must provide one of 'content' or 'templateId'.");
+        return;
+    }
+
+    if (options.content && options.templateId) {
+        options.templateId = null;
+        console.warn(
+            "Both 'content' and 'templateId' are specified. 'content' will take precedence, and 'templateId' will be ignored."
+        );
+    }
+
+    if (options.templateId) {
+        this.template = document.querySelector(`#${options.templateId}`);
+
+        if (!this.template) {
+            console.error(`#${options.templateId} does not exist!`);
+            return;
+        }
+    }
+
+    this.templateId = this.opt.templateId;
+    this.content = this.opt.content;
     this.allowButtonClose = this.opt.closeMethods.includes("button");
     this.allowBackdropClose = this.opt.closeMethods.includes("overlay");
     this.allowEscapeClose = this.opt.closeMethods.includes("escape");
     this.handleEscapeKey = this.handleEscapeKey.bind(this);
-
-    this.templateContent = document.querySelector(`#${this.opt.templateID}`).content;
     this._footerButtons = [];
 }
 
@@ -39,7 +59,11 @@ Poply.prototype._getScollbarWidth = function() {
 }
 
 Poply.prototype._build = function() {
-    const content = this.templateContent.cloneNode(true);
+    const contentNode = this.content ? document.createElement("div") : (this.templateId ? this.template.content.cloneNode(true) : "");  
+
+    if (this.content) {
+        contentNode.innerHTML = this.content;
+    }
 
     // modal backdrop
     this._modalBackdrop = document.createElement("div");
@@ -47,16 +71,18 @@ Poply.prototype._build = function() {
 
     // modal container
     const modalContainer = document.createElement("div");
-    modalContainer.classList = "poply__container";
+    modalContainer.classList = "poply__container";    
 
-    // add option class for container
-    if (this.opt.cssClass) {
+    if (Array.isArray(this.opt.cssClass)) { 
         this.opt.cssClass.forEach(cssClass => {
             if (typeof cssClass === 'string') {
                 modalContainer.classList.add(cssClass);
             }
-        })
+        });
+    } else {
+        console.error("cssClass is not an array:", this.opt.cssClass);
     }
+
 
     // modal close
     if (this.allowButtonClose) {            
@@ -65,10 +91,10 @@ Poply.prototype._build = function() {
     }
 
     // modal content
-    const modalContent = document.createElement("div");
-    modalContent.classList = "poply__content";
-    modalContent.append(content);
-    modalContainer.append(modalContent);
+    this.modalContent = document.createElement("div");
+    this.modalContent.classList = "poply__content";
+    this.modalContent.append(contentNode);
+    modalContainer.append(this.modalContent);
 
     // add option footer
     if (this.opt.footer) {
@@ -85,6 +111,13 @@ Poply.prototype._build = function() {
     // append node        
     this._modalBackdrop.append(modalContainer);
     document.body.append(this._modalBackdrop);
+}
+
+Poply.prototype.setContent = function(content) {
+    this.content = content;
+    if (this.modalContent) {
+        this.modalContent.innerHTML = this.content;
+    }
 }
 
 Poply.prototype.addFooterButton = function(title, cssClass, callback) {
