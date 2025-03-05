@@ -431,137 +431,122 @@ modal.close();</code></pre>
         <script src="./poply.js"></script>
         <script>
             // Highlight code
-            hljs.initHighlightingOnLoad();
-
-            // Test
-            const basicModal = new Poply({
-                // templateId: "basic-modal-template",
-                content: `
-                    <h1>Basic Modal</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur...</p>
-                `,
-                // enableScrollLock: false,
-                // scrollLockTarget: () => document.querySelector(".wrapper"),
-            });
-            const basicModalBtn = document.querySelector(".js-poply-modal-1");
-
-            basicModalBtn.onclick = () => {
-                basicModal.open();
-            }
+            hljs.initHighlightingOnLoad();            
 
             // Modal samples
 
             // Basic Modal
-            // const modal1Btn = document.querySelector(".js-poply-modal-1");
-            // const modal1 = new Poply({
-            //     content: `
-            //         <h1>Basic Modal</h1>
-            //         <p>This is a simple modal. You can customize its content as per your requirements.</p>
-            //     `,
-            // });
-            // modal1Btn.onclick = () => {
-            //     modal1.open();
-            // };
+            const modal1Btn = document.querySelector(".js-poply-modal-1");
+            const modal1 = new Poply({
+                content: `
+                    <h1>Basic Modal</h1>
+                    <p>This is a simple modal. You can customize its content as per your requirements.</p>
+                `,
+            });
+            modal1Btn.onclick = () => {
+                modal1.open();
+            };
 
             // // Modal with Buttons
-            // const modal2Btn = document.querySelector(".js-poply-modal-2");
-            // const modal2 = new Poply({
-            //     content: `
-            //         <h1>Modal with Buttons</h1>
-            //         <p>This modal includes functional buttons for actions such as canceling or confirming.</p>
-            //     `,
-            //     footer: true,
-            // });
-            // modal2.addFooterButton("Cancel", "modal-btn", () => {
-            //     modal2.close();
-            // });
-            // modal2.addFooterButton("Confirm", "modal-btn primary", () => {
-            //     console.log("Action confirmed!");
-            //     modal2.close();
-            // });
-            // modal2Btn.onclick = () => {
-            //     modal2.open();
-            // };
+            const modal2Btn = document.querySelector(".js-poply-modal-2");
+            const modal2 = new Poply({
+                content: `
+                    <h1>Modal with Buttons</h1>
+                    <p>This modal includes functional buttons for actions such as canceling or confirming.</p>
+                `,
+                footer: true,
+            });
+            modal2.addFooterButton("Cancel", "modal-btn", () => {
+                modal2.close();
+            });
+            modal2.addFooterButton("Confirm", "modal-btn primary", () => {
+                console.log("Action confirmed!");
+                modal2.close();
+            });
+            modal2Btn.onclick = () => {
+                modal2.open();
+            };
 
             // // Large Content Modal
-            // const modal3Btn = document.querySelector(".js-poply-modal-3");
-            // const modal3 = new Poply({
-            //     content: `
-            //         <h1>Large Content Modal</h1>
-            //         <p>This modal contains a large amount of content, suitable for displaying extended text or information.</p>
-            //         <p>Please scroll down to view the entire content.</p>
-            //         <p>The content can include multiple paragraphs, images, or other detailed information.</p>
-            //         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
-            //         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
-            //         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
-            //         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
-            //         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
-            //         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
-            //         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
-            //         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
-            //         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
-            //         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
-            //         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
-            //         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
-            //     `,
-            // });
-            // modal3Btn.onclick = () => {
-            //     modal3.open();
-            // };
+            const modal3Btn = document.querySelector(".js-poply-modal-3");
+            const modal3 = new Poply({
+                content: `
+                    <h1>Large Content Modal</h1>
+                    <p>This modal contains a large amount of content, suitable for displaying extended text or information.</p>
+                    <p>Please scroll down to view the entire content.</p>
+                    <p>The content can include multiple paragraphs, images, or other detailed information.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                `,
+            });
+            modal3Btn.onclick = () => {
+                modal3.open();
+            };
 
             // // Footer-Only Close Modal
-            // const modal4Btn = document.querySelector(".js-poply-modal-4");
-            // const modal4 = new Poply({
-            //     content: `
-            //         <h1>Footer-Only Close Modal</h1>
-            //         <p>This modal can only be closed via the button in the footer for a controlled experience.</p>
-            //     `,
-            //     footer: true,
-            //     closeMethods: [],
-            // });
-            // modal4.addFooterButton("Close", "modal-btn", () => {
-            //     modal4.close();
-            // });
-            // modal4Btn.onclick = () => {
-            //     modal4.open();
-            // };
+            const modal4Btn = document.querySelector(".js-poply-modal-4");
+            const modal4 = new Poply({
+                content: `
+                    <h1>Footer-Only Close Modal</h1>
+                    <p>This modal can only be closed via the button in the footer for a controlled experience.</p>
+                `,
+                footer: true,
+                closeMethods: [],
+            });
+            modal4.addFooterButton("Close", "modal-btn", () => {
+                modal4.close();
+            });
+            modal4Btn.onclick = () => {
+                modal4.open();
+            };
 
             // // Persistent Modal
-            // const modal5Btn = document.querySelector(".js-poply-modal-5");
-            // const modal5 = new Poply({
-            //     content: `
-            //         <h1>Persistent Modal</h1>
-            //         <p>This modal stays in the DOM even after being closed, allowing you to reopen it without losing any changes.</p>
-            //         <p>You can write something in the input below, close the modal, and reopen it to see the content still intact.</p>
-            //         <input type="text" placeholder="Type something here..." class="modal-input" style="width: 100%; padding: 10px; margin-top: 10px;" />
-            //     `,
-            //     destroyOnClose: false,
-            // });
-            // modal5Btn.onclick = () => {
-            //     modal5.open();
-            // };
+            const modal5Btn = document.querySelector(".js-poply-modal-5");
+            const modal5 = new Poply({
+                content: `
+                    <h1>Persistent Modal</h1>
+                    <p>This modal stays in the DOM even after being closed, allowing you to reopen it without losing any changes.</p>
+                    <p>You can write something in the input below, close the modal, and reopen it to see the content still intact.</p>
+                    <input type="text" placeholder="Type something here..." class="modal-input" style="width: 100%; padding: 10px; margin-top: 10px;" />
+                `,
+                destroyOnClose: false,
+            });
+            modal5Btn.onclick = () => {
+                modal5.open();
+            };
 
             // // Multiple Modals
-            // const modal6Btn = document.querySelector(".js-poply-modal-6");
-            // const modal6 = new Poply({
-            //     content: `
-            //         <h1>Multiple Modals</h1>
-            //         <p>This modal demonstrates interaction between multiple modals. You can open another modal from here.</p>
-            //         <button class="btn" onclick="modal1.open();">Open Basic Modal</button>
-            //     `,
-            // });
-            // modal6Btn.onclick = () => {
-            //     modal6.open();
-            // };
+            const modal6Btn = document.querySelector(".js-poply-modal-6");
+            const modal6 = new Poply({
+                content: `
+                    <h1>Multiple Modals</h1>
+                    <p>This modal demonstrates interaction between multiple modals. You can open another modal from here.</p>
+                    <button class="btn" onclick="modal1.open();">Open Basic Modal</button>
+                `,
+            });
+            modal6Btn.onclick = () => {
+                modal6.open();
+            };
 
             // // Youtube Embed Modal
-            // const modal7Btn = document.querySelector(".js-poply-modal-7");
-            // const modal7 = new Poply({
-            //     content: `<iframe width="560" height="315" src="https://www.youtube.com/embed/RDfwGkasp58?si=g8qSqHld--Uimjme" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
-            // });
-            // modal7Btn.onclick = () => {
-            //     modal7.open();
-            // };
+            const modal7Btn = document.querySelector(".js-poply-modal-7");
+            const modal7 = new Poply({
+                content: `<iframe width="560" height="315" src="https://www.youtube.com/embed/RDfwGkasp58?si=g8qSqHld--Uimjme" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
+                destroyOnClose: false,
+            });
+            modal7Btn.onclick = () => {
+                modal7.open();
+            };
         </script>
     </body>
 </html>

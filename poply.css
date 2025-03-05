@@ -20,7 +20,7 @@
     position: relative;
     width: min(600px, 90%);
     background: #fff;
-    padding: 20px;
+    padding: 20px 20px 30px;
     border-radius: 5px;
     transform: scale(0);
     transition: transform 0.3s ease;
@@ -52,11 +52,18 @@
     max-height: 500px;
     overflow: auto;
     line-height: 30px;
-    margin-top: 40px;
+    margin-top: 0px;
 }
 
 .poply__title {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
+}
+
+.poply__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding-top: 20px;
 }
 
 .poply--no-scroll {

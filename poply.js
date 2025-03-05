@@ -192,7 +192,7 @@ Poply.prototype.open = function() {
         document.addEventListener("keydown", this.handleEscapeKey);
     }
 
-    if (this.opt.enableScrollLock) {
+    if (Poply.elements.length === 1 && this.opt.enableScrollLock) {
         const target = this.opt.scrollLockTarget();     
 
         if (this._hasScrollbar(target)) { 
