@@ -69,7 +69,7 @@ Poply.prototype._build = function() {
 
     // modal backdrop
     this._modalBackdrop = document.createElement("div");
-    this._modalBackdrop.classList = "poply__backdrop";
+    this._modalBackdrop.classList = "poply";
 
     // modal container
     const modalContainer = document.createElement("div");
@@ -158,6 +158,10 @@ Poply.prototype.setFooterContent = function(content) {
 }
 
 Poply.prototype._hasScrollbar = function(target) {
+    if ([document.documentElement, document.body].includes(target)) {
+        return document.documentElement.scrollHeight > document.documentElement.clientHeight || 
+                document.body.scrollHeight > document.body.clientHeight;
+    }
     return target.scrollHeight > target.clientHeight;
 }
 
