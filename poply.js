@@ -8,6 +8,8 @@ function Poply(options = {}) {
         footer: false,
         onOpen: () => {},
         onClose: () => {},
+        enableScrollLock: true,
+        scrollLockTarget: () => document.body,
     }, options);
 
     if (!options.content && !options.templateId) {
@@ -155,6 +157,10 @@ Poply.prototype.setFooterContent = function(content) {
     this.renderFooterContent();     
 }
 
+Poply.prototype._hasScrollbar = function(target) {
+    return target.scrollHeight > target.clientHeight;
+}
+
 Poply.prototype.open = function() {        
     Poply.elements.push(this);
 
@@ -182,8 +188,16 @@ Poply.prototype.open = function() {
         document.addEventListener("keydown", this.handleEscapeKey);
     }
 
-    document.body.classList.add("poply--no-scroll");
-    document.body.style.paddingRight = this._getScollbarWidth() + "px";
+    if (this.opt.enableScrollLock) {
+        const target = this.opt.scrollLockTarget();     
+
+        if (this._hasScrollbar(target)) { 
+            target.classList.add("poply--no-scroll");
+            
+            const targetPaddingRight = parseInt(getComputedStyle(target).paddingRight);
+            target.style.paddingRight = targetPaddingRight + this._getScollbarWidth() + "px";
+        }
+    }
 
     this._onTransitionEnd(this.opt.onOpen);
 
@@ -219,9 +233,13 @@ Poply.prototype.close = function(destroy = this.opt.destroyOnClose) {
             this._modalBackdrop = null;
             this._modalFooter = null;
 
-            if (!Poply.elements.length) {
-                document.body.classList.remove("poply--no-scroll");
-                document.body.style.paddingRight = "";
+            if (this.opt.enableScrollLock && !Poply.elements.length) {      
+                const target = this.opt.scrollLockTarget();
+
+                if (this._hasScrollbar(target)) {
+                    target.classList.remove("poply--no-scroll");
+                    target.style.paddingRight = "";
+                }
             }
     
             if (typeof onClose === 'function') this.opt.onClose();
